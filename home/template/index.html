@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Workplace Wingman</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+
+ <style>
+        body {
+            background-color: black;
+            background-attachment: fixed;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+        }
+
+        h1 {
+            color: #FFFFFF; /* White text color for contrast */
+            font-family: 'Arial', sans-serif;
+            font-size: 48px; /* Larger font size */
+            font-weight: bold;
+            padding: 40px 0px 20px 0px; /* Add more padding to top and bottom */
+            text-shadow: 2px 2px #000000; /* Add a subtle text shadow */
+        }
+
+        /* Rest of the CSS styles... */
+        .card {
+            flex: 1;
+            color: white;
+            height: 150px;
+            border: 2px solid #333333;
+            border-radius: 25px;
+            margin: 5px;
+            padding: 5px;
+            background: linear-gradient(to bottom, #8e2de2, #4a00e0);
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+        }
+
+        .card-title {
+            border-bottom: 1px dashed #ccc;
+            font-size: 20px; /* Increase the font size */
+            padding-bottom: 8px; /* Add some space below the title */
+        }
+
+        a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: white;
+            color: black;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 4px;
+            border: none;
+            transition: background-color 0.3s ease;
+        }
+
+        a:hover {
+            background-color: #E93C2D;
+        }
+
+        .outer-div {
+            width: 75%;
+            margin: 0 auto;
+            margin-bottom: 100px;
+            padding: 20px 0px 0px 0px;
+            height: 200px;
+            overflow-y: scroll;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+             background-color: black; /* Set the background color to black */
+        }
+
+        .table {
+            border-radius: 20px;
+            overflow: hidden;
+            padding: 20px;
+        }
+
+        .table tbody {
+            max-height: 10px;
+            overflow-y: auto;
+        }
+/* Adjust the carousel height to fill the screen */
+#video-section {
+  position: relative;
+  width: 100%;
+  height: 100vh; /* Set the height to fill the viewport */
+  overflow: hidden;
+}
+
+/* Center the video inside the carousel item */
+.carousel-item video {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+/* Hide the carousel controls */
+.carousel-control-prev,
+.carousel-control-next {
+  display: none;
+}
+
+/* Additional CSS for the horizontal navbar */
+        .navbar {
+            background-color: #333; /* Dark background color */
+        }
+
+        .navbar-brand {
+            color: #fff; /* White text color for the brand/logo */
+            font-weight: bold;
+        }
+
+        .navbar-nav .nav-link {
+            color: #fff; /* White text color for links */
+            font-weight: bold;
+        }
+
+        .navbar-nav .nav-link:hover {
+            background-color: #555; /* Darker background color on hover */
+        }
+    </style></head>
+<body>
+<!-- Simple Single-Lined Horizontal Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+        <a class="navbar-brand" href="#">{{uname}}</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">{{ uname }}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div style="padding:30px; margin:30px; background:#1F1F1F; border-radius:20px; ">
+<center><h1 style=" color: #FFFFFF; /* White text color for contrast */
+        font-family: 'Arial', sans-serif;
+        font-size: 30px;
+        font-weight: bold;
+        padding : 20px 0px 0px 0px;
+">
+   Automated Robot</h1></center>
+
+<center><h1 style=" color: #FFFFFF; /* White text color for contrast */
+        font-family: 'Arial', sans-serif;
+        font-size: 24px;
+        font-weight: bold;
+        margin: 0px 0px 20px 0px;
+">
+   Select the Destination</h1></center>
+
+
+    <!-- Content of the web page -->
+  <div class="container">
+  <div class="row">
+    {% for Folder in FolderDets %}
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-body">
+
+              <h5 class="card-title"><i class="fas fa-user-circle"></i> {{ Folder }}</h5>
+              <p></p>
+              <center><a href="{% url 'execPresentation' Fname=Folder uname=uname%}">Select Destination</a></center>
+          </div>
+        </div>
+      </div>
+      {% if forloop.counter|divisibleby:3 %}
+  </div>
+  <div class="row">
+      {% endif %}
+    {% endfor %}
+  </div>
+</div>
+    </div>
+</body>
+</html>
